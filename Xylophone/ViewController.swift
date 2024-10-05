@@ -18,7 +18,18 @@ class ViewController: UIViewController {
     }
 
     @IBAction func pressButton(_ sender: UIButton) {
+        let delay: Double = 0.2
+        UIView.animate(withDuration: 0.3) {
+            sender.alpha = 0.5
+        }
+        
         playSound(sender.currentTitle!)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            UIView.animate(withDuration: 0.3) {
+                sender.alpha = 1.0
+            }
+        }
     }
     
     func playSound(_ tone: String) {
